@@ -1,28 +1,25 @@
 
 var bounds = new Rectangle(0, 0, window.innerWidth, window.innerHeight);
+
+
 var canvas = document.getElementById("myCanvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var ctx = canvas.getContext("2d");
 
+
 var delta = 0;
 var deltaTime = Date.now();
 
-var titleTextStyle = "palegoldenrod";
-var titleTextX = 100;
-var titleTextY = 100;
-var titleText = "Animated Backgrounds";
+
 var titleFontSize = 60;
+var titleText = "Animated Backgrounds";
 var titleFontFamily = "Showcard Gothic";
 
+
 var animation;
+var animationImage;
 var animationDestination = new Rectangle(340, 500, 100, 125);
-var animationImage = new Image();
-animationImage.onload = function() {
-    // image, speed, sourceMaxWidth, sourceMaxHeight, frameCols, frameRows, startingCol, startingRow
-    animation = new Animation(animationImage, 0.25, 400.25, 599.25, 4, 1, 0, 2);
-};
-animationImage.src = "img/spriteSheet.png";
 
 var textRender;
 var paralaxBackgroundSlider;  
@@ -47,14 +44,33 @@ var backgroundImageBounds = new Rectangle(0, 0, 0, 0);
 
 
 InitTextRender();
+InitCharacterAnimation();
 Loop();
 
 
 function InitTextRender() {    
     textRender = new TextRender();
-    textRender.AddTextElement(new TextElement(titleText, titleTextStyle, titleFontFamily, 50, 150, titleFontSize));
-    textRender.AddTextElement(new TextElement("todo: animate text!", "skyblue", titleFontFamily, 80, 255, 40));
+    textRender.AddTextElement(new TextElement("Animated Backgrounds", "palegoldenrod", titleFontFamily, 50, 150, titleFontSize));
+    textRender.AddTextElement(new TextElement("todo: animate text!", "goldenrod", titleFontFamily, 80, 255, 40));
     textRender.AddTextElement(new TextElement("todo: create todo style menu!", "skyblue", titleFontFamily, 80, 295, 40));
+    textRender.AddTextElement(new TextElement("todo: use gameutils package as dependency in animatedbackgrounds repo", "olive", titleFontFamily, 80, 335, 40));
+    textRender.AddTextElement(new TextElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 80, 375, 40));
+}
+
+function InitCharacterAnimation() {    
+    var animationBottomMargin =  (bounds.H / 5);
+    var ycoord = bounds.H - animationBottomMargin - animationDestination.H;
+
+    animationDestination = new Rectangle(340, ycoord, 100, 125);
+    animationImage = new Image();
+    animationImage.onload = function() {
+        // image, speed, sourceMaxWidth, sourceMaxHeight, frameCols, frameRows, startingCol, startingRow
+        animation = new Animation(animationImage, 0.25, 400.25, 599.25, 4, 1, 0, 2);
+    }
+    animationImage.src = "img/spriteSheet.png";
+
+    // TODO:
+    // Implement dance to the beat animation(chillhop)
 };
 
 
