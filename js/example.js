@@ -119,7 +119,7 @@ function Update() {
 };
 
 function Draw() {    
-    ctx.clearRect(bounds.x, bounds.y, bounds.width, bounds.height);    
+    ctx.clearRect(bounds.X, bounds.Y, bounds.W, bounds.H);    
         
     if (this.backgroundImageReady) {
         //drawImage(ctx, this.backgroundImage, backgroundImageBounds, null);
