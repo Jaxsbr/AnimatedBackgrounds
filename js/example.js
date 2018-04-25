@@ -55,6 +55,8 @@ function InitTextRender() {
     textRender.AddTextElement(new TextElement("todo: create todo style menu!", "skyblue", titleFontFamily, 80, 295, 40));
     textRender.AddTextElement(new TextElement("todo: use gameutils package as dependency in animatedbackgrounds repo", "olive", titleFontFamily, 80, 335, 40));
     textRender.AddTextElement(new TextElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 80, 375, 40));
+    textRender.AddTextElement(new TextElement("todo: dynamically resize canvas on screen resize", "purple", titleFontFamily, 80, 415, 40));
+    textRender.AddTextElement(new TextElement("todo: math, calculating render perportions base on screen bounds", "orange", titleFontFamily, 80, 455, 40));
 }
 
 function InitCharacterAnimation() {    
