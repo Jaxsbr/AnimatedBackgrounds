@@ -78,10 +78,10 @@ function InitCharacterAnimation() {
 
 function PopulateParalaxBackgrounds() {
     paralaxBackgroundSlider.Backgrounds.push(
-        new ParalaxBackground(4, new Rectangle(0, 0, bounds.W, bounds.H), 1, 50));    
+        new ParalaxBackground(4, new Rectangle(0, 0, bounds.W, bounds.H), 1, 2));    
 
     paralaxBackgroundSlider.Backgrounds.push(
-        new ParalaxBackground(4, new Rectangle(-bounds.W, 0, bounds.W, bounds.H), 1, 50));               
+        new ParalaxBackground(4, new Rectangle(-bounds.W, 0, bounds.W, bounds.H), 1, 2));               
 };
 
 

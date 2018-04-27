@@ -31,10 +31,10 @@ class ParalaxBackground {
     
     Update(drawBounds, delta) {
         if (this.Destination.X > drawBounds.W) {
-            this.Destination.X = -drawBounds.W;
+            this.Destination.X = -drawBounds.W + this.Increment;
         }
 
-        this.Destination.X += (delta * this.Increment);
+        this.Destination.X += this.Increment;
     }
 
     UpdatePacingMode(drawBounds, delta) {   
