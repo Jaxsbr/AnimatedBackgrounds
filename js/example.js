@@ -86,15 +86,12 @@ function PopulateParalaxBackgrounds() {
 
 
 function Loop() {           
-    UpdateDelta();  
-    
-    if (paralaxBackgroundSlider) {
-        Update();
-        Draw();
-    }
+    UpdateDelta();          
+    Update();
+    Draw();    
 
     if (animation) {
-        animation.Update(animationDestination, delta);
+        animation.Update(animationDestination, delta);                                
         animation.Draw(ctx);
     }
 
@@ -108,7 +105,10 @@ function UpdateDelta() {
 };
 
 function Update() {    
-    paralaxBackgroundSlider.Update(bounds, delta);    
+
+    if (paralaxBackgroundSlider) {
+        paralaxBackgroundSlider.Update(bounds, delta);    
+    }
 
     backgroundImageBounds.X = bounds.X - 155;
     backgroundImageBounds.Y = bounds.Y - 100;
@@ -121,11 +121,16 @@ function Update() {
 function Draw() {    
     ctx.clearRect(bounds.X, bounds.Y, bounds.W, bounds.H);    
         
+    drawFillText(ctx, "black", "Showcard Gothic", 56, "Loading Art ...", (animationDestination.X + animationDestination.W), animationDestination.Y + 110);
+    drawFillText(ctx, "maroon", "Showcard Gothic", 56, "Loading Art ...", (animationDestination.X + animationDestination.W + 1), animationDestination.Y + 110 + 1);
+
     if (this.backgroundImageReady) {
         //drawImage(ctx, this.backgroundImage, backgroundImageBounds, null);
     }
     
-    paralaxBackgroundSlider.Draw(ctx); 
+    if (paralaxBackgroundSlider) {
+        paralaxBackgroundSlider.Draw(ctx); 
+    }
         
     textRender.Draw(ctx);
 };
