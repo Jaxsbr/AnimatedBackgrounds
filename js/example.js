@@ -15,7 +15,7 @@ var deltaTime = Date.now();
 var titleFontSize = 60;
 var titleText = "Animated Backgrounds";
 var titleFontFamily = "Showcard Gothic";
-
+var titleShadowOffset = new Point(5, 5);
 
 var animation;
 var animationImage;
@@ -26,7 +26,7 @@ var paralaxBackgroundSlider;
 
 var image = new Image();
 image.onload = function() {         
-    paralaxBackgroundSlider = new ParalaxBackgroundSlider(image);
+    paralaxBackgroundSlider = new ParalaxBackgroundSlider();
     PopulateParalaxBackgrounds();
 };
 //image.src = "img/trees.png";
@@ -50,13 +50,12 @@ Loop();
 
 function InitTextRender() {    
     textRender = new TextRender();
-    textRender.AddTextElement(new TextElement("Animated Backgrounds", "palegoldenrod", titleFontFamily, 50, 150, titleFontSize));
-    textRender.AddTextElement(new TextElement("todo: animate text!", "goldenrod", titleFontFamily, 80, 255, 40));
-    textRender.AddTextElement(new TextElement("todo: create todo style menu!", "skyblue", titleFontFamily, 80, 295, 40));
-    textRender.AddTextElement(new TextElement("todo: use gameutils package as dependency in animatedbackgrounds repo", "olive", titleFontFamily, 80, 335, 40));
-    textRender.AddTextElement(new TextElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 80, 375, 40));
-    textRender.AddTextElement(new TextElement("todo: dynamically resize canvas on screen resize", "purple", titleFontFamily, 80, 415, 40));
-    textRender.AddTextElement(new TextElement("todo: math, calculating render perportions base on screen bounds", "orange", titleFontFamily, 80, 455, 40));
+    textRender.AddTextElement(new TextElement("Animated Backgrounds", "palegoldenrod", titleFontFamily, 50, 150, titleFontSize, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("todo: animate text!", "goldenrod", titleFontFamily, 80, 255, 40, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("todo: create todo style menu!", "skyblue", titleFontFamily, 80, 295, 40, titleShadowOffset));    
+    textRender.AddTextElement(new TextElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 80, 335, 40, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("todo: dynamically resize canvas on screen resize", "purple", titleFontFamily, 80, 375, 40, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("todo: math, calculating render perportions base on screen bounds", "orange", titleFontFamily, 80, 415, 40, titleShadowOffset));
 }
 
 function InitCharacterAnimation() {    
@@ -78,10 +77,10 @@ function InitCharacterAnimation() {
 
 function PopulateParalaxBackgrounds() {
     paralaxBackgroundSlider.Backgrounds.push(
-        new ParalaxBackground(4, new Rectangle(0, 0, bounds.W, bounds.H), 1, 2));    
+        new ParalaxBackground(4, new Rectangle(0, 0, bounds.W, bounds.H), 1, 2, 0, image));    
 
     paralaxBackgroundSlider.Backgrounds.push(
-        new ParalaxBackground(4, new Rectangle(-bounds.W, 0, bounds.W, bounds.H), 1, 2));               
+        new ParalaxBackground(4, new Rectangle(-bounds.W, 0, bounds.W, bounds.H), 1, 2, 0, image));               
 };
 
 
