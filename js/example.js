@@ -11,11 +11,17 @@ var ctx = canvas.getContext("2d");
 var delta = 0;
 var deltaTime = Date.now();
 
+// TEXT LOOPS
+var textLoop_001;
+
 
 var titleFontSize = 60;
 var titleText = "Animated Backgrounds";
 var titleFontFamily = "Showcard Gothic";
 var titleShadowOffset = new Point(5, 5);
+
+var itemTitleFontFamily = "Calibri";
+var itemTitleShadowOffset = new Point(3, 3);
 
 var animation;
 var animationImage;
@@ -44,19 +50,35 @@ var backgroundImageBounds = new Rectangle(0, 0, 0, 0);
 
 
 InitTextRender();
+InitTextLoops();
 InitCharacterAnimation();
 Loop();
 
 
 function InitTextRender() {    
     textRender = new TextRender();
-    textRender.AddTextElement(new TextElement("Animated Backgrounds", "palegoldenrod", titleFontFamily, 50, 150, titleFontSize, titleShadowOffset));
-    textRender.AddTextElement(new TextElement("todo: animate text!", "goldenrod", titleFontFamily, 80, 255, 40, titleShadowOffset));
-    textRender.AddTextElement(new TextElement("todo: create todo style menu!", "skyblue", titleFontFamily, 80, 295, 40, titleShadowOffset));    
-    textRender.AddTextElement(new TextElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 80, 335, 40, titleShadowOffset));
-    textRender.AddTextElement(new TextElement("todo: dynamically resize canvas on screen resize", "purple", titleFontFamily, 80, 375, 40, titleShadowOffset));
-    textRender.AddTextElement(new TextElement("todo: math, calculating render perportions base on screen bounds", "orange", titleFontFamily, 80, 415, 40, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("Animated Backgrounds", "palegoldenrod", titleFontFamily, 50, 125, titleFontSize, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("* Sinewave Text Element Animation", "white", titleFontFamily, 50, 200, 35, titleShadowOffset));
+    textRender.AddTextElement(new TextElement("- Opacity Fade TTL", "white", titleFontFamily, 50, 240, 35, titleShadowOffset));                    
 }
+
+function InitTextLoops() {   
+    var textLoopElements = [
+        // new TextElement("a jong man was walking on his journey...", "white", titleFontFamily, 50, 600, 25, titleShadowOffset),
+        // new TextElement("a jong man was walking on his journey...", "white", titleFontFamily, 60, 700, 25, titleShadowOffset),
+        // new TextElement("a jong man was walking on his journey...", "white", titleFontFamily, 70, 800, 25, titleShadowOffset),
+        // new TextElement("a jong man was walking on his journey...", "white", titleFontFamily, 60, 900, 25, titleShadowOffset),
+        // new TextElement("a jong man was walking on his journey...", "white", titleFontFamily, 50, 1000, 25, titleShadowOffset),
+
+        new TextLoopElement("todo: sinewave paralax layers, depth perception improvement", "pink", titleFontFamily, 200, 350, 40, itemTitleShadowOffset, 1),
+        new TextLoopElement("todo: dynamically resize canvas on screen resize", "purple", titleFontFamily, 250, 400, 40, itemTitleShadowOffset, 20),
+        new TextLoopElement("todo: math, calculating render perportions based on screen bounds", "green", titleFontFamily, 300, 450, 40, itemTitleShadowOffset, 30),        
+    ];
+
+//    textLoop_001 = new TextLoop(elements, RandomBetween(200, 400));         
+    textLoop_001 = new TextLoop(textLoopElements, RandomBetween(300, 320));         
+}
+
 
 function InitCharacterAnimation() {    
     var animationBottomMargin =  (bounds.H / 5);
@@ -115,7 +137,12 @@ function Update() {
     backgroundImageBounds.H = bounds.H;
     
     textRender.Update(delta);
+    textLoop_001.Update(delta);
 };
+
+function RandomBetween (min, max) {
+    return Math.random() * (max - min) + min;
+}
 
 function Draw() {    
     ctx.clearRect(bounds.X, bounds.Y, bounds.W, bounds.H);    
@@ -132,4 +159,5 @@ function Draw() {
     }
         
     textRender.Draw(ctx);
+    textLoop_001.Draw(ctx);
 };
